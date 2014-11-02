@@ -4,10 +4,13 @@ import static org.pottberg.gda.tree.builder.SimpleAttributedBinaryTreeBuilder.cr
 import static org.pottberg.gda.tree.builder.SimpleAttributedBinaryTreeBuilder.createTree;
 import javafx.fxml.FXML;
 import javafx.scene.Group;
+import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
 import javafx.scene.text.Text;
+import javafx.scene.text.TextAlignment;
+import javafx.scene.text.TextBoundsType;
 
 import org.pottberg.gda.tree.BinaryTree;
 import org.pottberg.gda.tree.DrawableTreeNode;
@@ -42,7 +45,7 @@ public class GraphDrawingAlgorithmsController {
 	algorithm.execute();
 
 	int scale = 100;
-	
+
 	for (DrawableTreeNode<?> node : tree.createPreOrderIterable()) {
 	    if (node.isRootNode()) {
 		continue;
@@ -59,18 +62,23 @@ public class GraphDrawingAlgorithmsController {
 	for (DrawableTreeNode<?> node : tree.createPreOrderIterable()) {
 	    Color nodeColor = node.isRootNode() ? Color.RED : Color.BLUE;
 	    Circle circle = new Circle(0.2 * scale, nodeColor);
-	    circle.setCenterX(node.getX() * scale);
-	    circle.setCenterY(node.getY() * scale);
-	    canvas.getChildren()
-		.add(circle);
-	}
-	for (DrawableTreeNode<?> node : tree.createPreOrderIterable()) {
+	    
 	    Text text = new Text(node.toString());
 	    text.setStroke(Color.WHITE);
 	    text.setX(node.getX() * scale);
 	    text.setY(node.getY() * scale);
+	    text.setTextAlignment(TextAlignment.CENTER);
+	    text.setBoundsType(TextBoundsType.VISUAL);
+
+	    StackPane stack = new StackPane();
+	    stack.getChildren()
+		.addAll(circle, text);
+	    stack.relocate(node.getX() * scale, node.getY() * scale);
+	    stack.translateXProperty().bind(stack.widthProperty().divide(-2));
+	    stack.translateYProperty().bind(stack.heightProperty().divide(-2));
+	    
 	    canvas.getChildren()
-		.add(text);
+		.add(stack);
 	}
     }
 
