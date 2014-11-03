@@ -1,27 +1,28 @@
 package org.pottberg.gda.tree.algorithms;
 
-import static org.pottberg.gda.tree.builder.SimpleAttributedBinaryTreeBuilder.createNode;
-import static org.pottberg.gda.tree.builder.SimpleAttributedBinaryTreeBuilder.createTree;
+import static org.pottberg.gda.tree.builder.SimpleBinaryTreeBuilder.createNode;
+import static org.pottberg.gda.tree.builder.SimpleBinaryTreeBuilder.createTree;
 
 import org.junit.Test;
 import org.pottberg.gda.node.DrawableNode;
 import org.pottberg.gda.tree.BinaryTree;
+import org.pottberg.gda.tree.SimpleBinaryTreeNode;
 
 public class LayeredBinaryTreeAlgorithmTest {
 
     @Test
     public void test() {
-	BinaryTree<SimpleLayeredBinaryTreeNode> tree = createTree(createNode(SimpleLayeredBinaryTreeNode.class, 0l)
-	    .addLeftChild(createNode(SimpleLayeredBinaryTreeNode.class, 1l)
-		.addLeftChild(createNode(SimpleLayeredBinaryTreeNode.class, 11l)
+	BinaryTree<SimpleBinaryTreeNode> tree = createTree(createNode(0l)
+	    .addLeftChild(createNode(1l)
+		.addLeftChild(createNode(11l)
 		    .addLeftChild(111l)
 		    .addRightChild(112l) )
-		.addRightChild(createNode(SimpleLayeredBinaryTreeNode.class, 12l)
+		.addRightChild(createNode(12l)
 		    .addLeftChild(121l)
 		    .addRightChild(122l))
 	    )
-	    .addRightChild(2l), value -> new SimpleLayeredBinaryTreeNode(value));
-	LayeredBinaryTreeAlgorithm<SimpleLayeredBinaryTreeNode> algorithm = new LayeredBinaryTreeAlgorithm<>(tree);
+	    .addRightChild(2l));
+	LayeredBinaryTreeAlgorithm<?> algorithm = new LayeredBinaryTreeAlgorithm<SimpleBinaryTreeNode>(tree);
 			
 	for (DrawableNode node : tree.createPreOrderIterable()) {
 	    System.out.println(node);

@@ -1,7 +1,7 @@
 package org.pottberg.gda;
 
-import static org.pottberg.gda.tree.builder.SimpleAttributedBinaryTreeBuilder.createNode;
-import static org.pottberg.gda.tree.builder.SimpleAttributedBinaryTreeBuilder.createTree;
+import static org.pottberg.gda.tree.builder.SimpleBinaryTreeBuilder.createNode;
+import static org.pottberg.gda.tree.builder.SimpleBinaryTreeBuilder.createTree;
 import javafx.fxml.FXML;
 import javafx.scene.Group;
 import javafx.scene.layout.StackPane;
@@ -14,8 +14,8 @@ import javafx.scene.text.TextBoundsType;
 
 import org.pottberg.gda.tree.BinaryTree;
 import org.pottberg.gda.tree.DrawableTreeNode;
+import org.pottberg.gda.tree.SimpleBinaryTreeNode;
 import org.pottberg.gda.tree.algorithms.LayeredBinaryTreeAlgorithm;
-import org.pottberg.gda.tree.algorithms.SimpleLayeredBinaryTreeNode;
 
 public class GraphDrawingAlgorithmsController {
 
@@ -24,22 +24,18 @@ public class GraphDrawingAlgorithmsController {
 
     @FXML
     private void initialize() {
-	BinaryTree<SimpleLayeredBinaryTreeNode> tree = createTree(
-	    createNode(SimpleLayeredBinaryTreeNode.class, 0l)
-		.addLeftChild(
-		    createNode(SimpleLayeredBinaryTreeNode.class, 1l)
-			.addLeftChild(
-			    createNode(SimpleLayeredBinaryTreeNode.class, 11l)
-				.addLeftChild(111l)
-				.addRightChild(112l))
-			.addRightChild(
-			    createNode(SimpleLayeredBinaryTreeNode.class, 12l)
-				.addLeftChild(121l)
-				.addRightChild(122l))
+	BinaryTree<SimpleBinaryTreeNode> tree = createTree(
+	    createNode(0l)
+		.addLeftChild(createNode(1l)
+		    .addLeftChild(createNode(11l)
+			.addLeftChild(111l)
+			.addRightChild(112l))
+		    .addRightChild(createNode(12l)
+			.addLeftChild(121l)
+			.addRightChild(122l))
 		)
-		.addRightChild(2l), value -> new SimpleLayeredBinaryTreeNode(
-		value));
-	LayeredBinaryTreeAlgorithm<SimpleLayeredBinaryTreeNode> algorithm = new LayeredBinaryTreeAlgorithm<>(
+		.addRightChild(2l));
+	LayeredBinaryTreeAlgorithm<?> algorithm = new LayeredBinaryTreeAlgorithm<SimpleBinaryTreeNode>(
 	    tree);
 
 	algorithm.execute();
@@ -62,7 +58,7 @@ public class GraphDrawingAlgorithmsController {
 	for (DrawableTreeNode<?> node : tree.createPreOrderIterable()) {
 	    Color nodeColor = node.isRootNode() ? Color.RED : Color.BLUE;
 	    Circle circle = new Circle(0.2 * scale, nodeColor);
-	    
+
 	    Text text = new Text(node.toString());
 	    text.setStroke(Color.WHITE);
 	    text.setX(node.getX() * scale);
@@ -74,9 +70,13 @@ public class GraphDrawingAlgorithmsController {
 	    stack.getChildren()
 		.addAll(circle, text);
 	    stack.relocate(node.getX() * scale, node.getY() * scale);
-	    stack.translateXProperty().bind(stack.widthProperty().divide(-2));
-	    stack.translateYProperty().bind(stack.heightProperty().divide(-2));
-	    
+	    stack.translateXProperty()
+		.bind(stack.widthProperty()
+		    .divide(-2));
+	    stack.translateYProperty()
+		.bind(stack.heightProperty()
+		    .divide(-2));
+
 	    canvas.getChildren()
 		.add(stack);
 	}

@@ -1,9 +1,10 @@
 package org.pottberg.gda.tree;
 
+import org.pottberg.gda.node.AttributedNode;
 import org.pottberg.gda.node.NumberedNode;
 
-public abstract class SimpleAttributedBinaryTreeNode<T extends SimpleAttributedBinaryTreeNode<T>>
-    implements NumberedNode, BinaryTreeNode<T>, DrawableTreeNode<T> {
+public abstract class AttributedBinaryTreeNodeBase<T extends AttributedBinaryTreeNodeBase<T>>
+    implements NumberedNode, BinaryTreeNode<T>, DrawableTreeNode<T>, AttributedNode {
 
     protected T parentNode;
     protected T leftNode;
@@ -11,8 +12,9 @@ public abstract class SimpleAttributedBinaryTreeNode<T extends SimpleAttributedB
     protected Long value;
     protected int x;
     protected int y;
+    private Object attributes;
 
-    public SimpleAttributedBinaryTreeNode(Long value) {
+    public AttributedBinaryTreeNodeBase(Long value) {
 	this.value = value;
     }
 
@@ -98,5 +100,16 @@ public abstract class SimpleAttributedBinaryTreeNode<T extends SimpleAttributedB
     public int getY() {
 	return y;
     }
+    
+    @SuppressWarnings("unchecked")
+    @Override
+    public <V> V getAttributes(Class<V> type) {
+	return (V) attributes;
+    }
+    
+    @Override    
+    public <V> void setAttributes(V attributes) {
+	this.attributes = attributes;	
+    };
 
 }
