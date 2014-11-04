@@ -15,6 +15,9 @@ import javafx.scene.text.TextBoundsType;
 import org.pottberg.gda.tree.BinaryTree;
 import org.pottberg.gda.tree.DrawableTreeNode;
 import org.pottberg.gda.tree.SimpleBinaryTreeNode;
+import org.pottberg.gda.tree.algorithms.BinaryTreeAlgorithm;
+import org.pottberg.gda.tree.algorithms.HVBinaryTreeAlgorithm;
+import org.pottberg.gda.tree.algorithms.HVBinaryTreeAlgorithm.Combination;
 import org.pottberg.gda.tree.algorithms.LayeredBinaryTreeAlgorithm;
 
 public class GraphDrawingAlgorithmsController {
@@ -35,8 +38,10 @@ public class GraphDrawingAlgorithmsController {
 			.addRightChild(122l))
 		)
 		.addRightChild(2l));
-	LayeredBinaryTreeAlgorithm<?> algorithm = new LayeredBinaryTreeAlgorithm<SimpleBinaryTreeNode>(
-	    tree);
+	// BinaryTreeAlgorithm algorithm = new
+	// LayeredBinaryTreeAlgorithm<SimpleBinaryTreeNode>( tree);
+	BinaryTreeAlgorithm algorithm = new HVBinaryTreeAlgorithm<SimpleBinaryTreeNode>(
+	    tree, Combination.VERTICAL);
 
 	algorithm.execute();
 
