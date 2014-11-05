@@ -5,6 +5,6 @@ public interface AttributedNode {
     
    <T> T getAttributes(Class<T> type);
    
-   <T> void setAttributes(T attributes);
+   <T> void setAttributes(Class<T> type, T attributes);
 
 }

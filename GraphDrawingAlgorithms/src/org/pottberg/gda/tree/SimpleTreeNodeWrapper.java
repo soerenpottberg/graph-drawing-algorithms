@@ -87,7 +87,7 @@ public abstract class SimpleTreeNodeWrapper<T extends DrawableTreeNode<T> & Attr
         E attributes = wrappedNode.getAttributes(type);
         if(attributes == null) {
             attributes = createAttributes();
-            wrappedNode.setAttributes(attributes);
+            wrappedNode.setAttributes(type, attributes);
         }
         return attributes;
     }

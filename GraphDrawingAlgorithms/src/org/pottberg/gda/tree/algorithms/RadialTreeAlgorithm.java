@@ -5,7 +5,7 @@ import org.pottberg.gda.tree.DrawableTreeNode;
 import org.pottberg.gda.tree.Tree;
 
 public class RadialTreeAlgorithm<T extends DrawableTreeNode<T> & AttributedNode>
-    implements TreeAlgorithm {
+    implements TreeAlgorithm, BinaryTreeAlgorithm {
 
     private Tree<T> tree;
 
@@ -29,6 +29,11 @@ public class RadialTreeAlgorithm<T extends DrawableTreeNode<T> & AttributedNode>
 	    calculateChildNodeAngleRanges(attributedNode);
 	    calculateCoordinates(attributedNode);
 	}
+    }
+    
+    @Override
+    public boolean isRadialLayout() {
+        return true;
     }
 
     private void calculateNumberOfLeaveNodes(RadialTreeNode<?> node) {

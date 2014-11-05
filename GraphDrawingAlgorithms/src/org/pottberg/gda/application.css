@@ -1,0 +1,6 @@
+.flow-pane {
+	-fx-padding: 20px;
+	-fx-alignment: center;
+	-fx-vgap: 50px;
+	-fx-hgap: 50px;
+}

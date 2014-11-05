@@ -1,5 +1,8 @@
 package org.pottberg.gda.tree;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.pottberg.gda.node.AttributedNode;
 import org.pottberg.gda.node.NumberedNode;
 
@@ -13,10 +16,11 @@ public abstract class AttributedBinaryTreeNodeBase<T extends AttributedBinaryTre
     protected Long value;
     protected double x;
     protected double y;
-    private Object attributes;
+    private Map<Class<?>, Object> attributesMap;
 
     public AttributedBinaryTreeNodeBase(Long value) {
 	this.value = value;
+	attributesMap = new HashMap<>();
     }
 
     @Override
@@ -105,12 +109,12 @@ public abstract class AttributedBinaryTreeNodeBase<T extends AttributedBinaryTre
     @SuppressWarnings("unchecked")
     @Override
     public <V> V getAttributes(Class<V> type) {
-	return (V) attributes;
+	return (V) attributesMap.get(type);
     }
 
     @Override
-    public <V> void setAttributes(V attributes) {
-	this.attributes = attributes;
+    public <V> void setAttributes(Class<V> type, V attributes) {
+	attributesMap.put(type, attributes);
     };
 
     @Override
