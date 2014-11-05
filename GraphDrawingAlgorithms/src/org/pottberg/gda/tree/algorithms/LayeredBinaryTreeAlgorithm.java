@@ -21,30 +21,30 @@ public class LayeredBinaryTreeAlgorithm<T extends BinaryTreeNode<T> & DrawableTr
     @Override
     public void execute() {
 	for (T node : tree.createPostOrderIterable()) {
-	    LayeredBinaryTreeNode attributedNode = new SimpleLayeredBinaryTreeNode<T>(node);
+	    LayeredBinaryTreeNode<?> attributedNode = new SimpleLayeredBinaryTreeNode<T>(node);
 	    calculateBoundaries(attributedNode);
 	    calculateMinimalDistance(attributedNode);
 	}
 	for (T node : tree.createPreOrderIterable()) {
-	    SimpleLayeredBinaryTreeNode<T> attributedNode = new SimpleLayeredBinaryTreeNode<T>(node);
+	    LayeredBinaryTreeNode<?> attributedNode = new SimpleLayeredBinaryTreeNode<T>(node);
 	    calculateCoordinates(attributedNode);
 	}
     }
 
-    private void calculateCoordinates(LayeredBinaryTreeNode attributedNode) {
+    private void calculateCoordinates(LayeredBinaryTreeNode<?> attributedNode) {
 	if (attributedNode.isRootNode()) {
 	    attributedNode.setX(0);
 	    attributedNode.setY(0);
 	} else {
-	    LayeredBinaryTreeNode parentNode = attributedNode.getParentNode();
+	    LayeredBinaryTreeNode<?> parentNode = attributedNode.getParentNode();
 	    attributedNode.setX(parentNode.getX() + attributedNode.getXOffset());
 	    attributedNode.setY(parentNode.getY() + 1);
 	}
     }
 
-    private void calculateMinimalDistance(LayeredBinaryTreeNode attributedNode) {
-	LayeredBinaryTreeNode leftNode = attributedNode.getLeftNode();
-	LayeredBinaryTreeNode rightNode = attributedNode.getRightNode();
+    private void calculateMinimalDistance(LayeredBinaryTreeNode<?> attributedNode) {
+	LayeredBinaryTreeNode<?> leftNode = attributedNode.getLeftNode();
+	LayeredBinaryTreeNode<?> rightNode = attributedNode.getRightNode();
 	if (leftNode == null || rightNode == null) {
 	    if (rightNode != null) {
 		rightNode.setXOffset(0);
@@ -55,8 +55,8 @@ public class LayeredBinaryTreeAlgorithm<T extends BinaryTreeNode<T> & DrawableTr
 	    return;
 	}
 
-	List<LayeredBinaryTreeNode> leftBoundary = leftNode.getRightBoundary();
-	List<LayeredBinaryTreeNode> rightBoundary = rightNode.getLeftBoundary();
+	List<LayeredBinaryTreeNode<?>> leftBoundary = leftNode.getRightBoundary();
+	List<LayeredBinaryTreeNode<?>> rightBoundary = rightNode.getLeftBoundary();
 	int minimalSize = Math.min(leftBoundary.size(), rightBoundary.size());
 	int minimalDistance = MINIMAL_DISTANCE;
 	int leftOffset = 0;
@@ -82,22 +82,22 @@ public class LayeredBinaryTreeAlgorithm<T extends BinaryTreeNode<T> & DrawableTr
 	return minimalDistance % 2 != 0;
     }
 
-    private void calculateBoundaries(LayeredBinaryTreeNode attributedNode) {
+    private void calculateBoundaries(LayeredBinaryTreeNode<?> attributedNode) {
 	if (!attributedNode.hasLeftNode() || !attributedNode.hasRightNode()) {
 	    calculateBoundariesForMaximalOneChild(attributedNode);
 	    return;
 	}
-	List<LayeredBinaryTreeNode> leftBoundary = calculateLeftBoundary(attributedNode);
-	List<LayeredBinaryTreeNode> rightBoundary = calculateRightBoundary(attributedNode);
+	List<LayeredBinaryTreeNode<?>> leftBoundary = calculateLeftBoundary(attributedNode);
+	List<LayeredBinaryTreeNode<?>> rightBoundary = calculateRightBoundary(attributedNode);
 	attributedNode.setLeftBoundary(leftBoundary);
 	attributedNode.setRightBoundary(rightBoundary);
     }
 
-    private void calculateBoundariesForMaximalOneChild(LayeredBinaryTreeNode attributedNode) {
-	LayeredBinaryTreeNode leftNode = attributedNode.getLeftNode();
-	    LayeredBinaryTreeNode rightNode = attributedNode.getRightNode();
-	List<LayeredBinaryTreeNode> leftBoundary = new ArrayList<>();
-	List<LayeredBinaryTreeNode> rightBoundary = new ArrayList<>();
+    private void calculateBoundariesForMaximalOneChild(LayeredBinaryTreeNode<?> attributedNode) {
+	LayeredBinaryTreeNode<?> leftNode = attributedNode.getLeftNode();
+	    LayeredBinaryTreeNode<?> rightNode = attributedNode.getRightNode();
+	List<LayeredBinaryTreeNode<?>> leftBoundary = new ArrayList<>();
+	List<LayeredBinaryTreeNode<?>> rightBoundary = new ArrayList<>();
 	leftBoundary.add(attributedNode);
 	rightBoundary.add(attributedNode);
 	if (rightNode != null) {
@@ -112,25 +112,25 @@ public class LayeredBinaryTreeAlgorithm<T extends BinaryTreeNode<T> & DrawableTr
 	attributedNode.setRightBoundary(rightBoundary);
     }
 
-    private List<LayeredBinaryTreeNode> calculateRightBoundary(LayeredBinaryTreeNode attributedNode) {
-	LayeredBinaryTreeNode leftNode = attributedNode.getLeftNode();
-	    LayeredBinaryTreeNode rightNode = attributedNode.getRightNode();	    
-	List<LayeredBinaryTreeNode> mainBoundary = rightNode.getRightBoundary();
-	List<LayeredBinaryTreeNode> fallbackBoundary = leftNode.getRightBoundary();
+    private List<LayeredBinaryTreeNode<?>> calculateRightBoundary(LayeredBinaryTreeNode<?> attributedNode) {
+	LayeredBinaryTreeNode<?> leftNode = attributedNode.getLeftNode();
+	    LayeredBinaryTreeNode<?> rightNode = attributedNode.getRightNode();	    
+	List<LayeredBinaryTreeNode<?>> mainBoundary = rightNode.getRightBoundary();
+	List<LayeredBinaryTreeNode<?>> fallbackBoundary = leftNode.getRightBoundary();
 	return calculateBoundary(attributedNode, mainBoundary, fallbackBoundary);
     }
 
-    private List<LayeredBinaryTreeNode> calculateLeftBoundary(LayeredBinaryTreeNode attributedNode) {
-	LayeredBinaryTreeNode leftNode = attributedNode.getLeftNode();
-	    LayeredBinaryTreeNode rightNode = attributedNode.getRightNode();
-	List<LayeredBinaryTreeNode> mainBoundary = leftNode.getLeftBoundary();
-	List<LayeredBinaryTreeNode> fallbackBoundary = rightNode.getLeftBoundary();
+    private List<LayeredBinaryTreeNode<?>> calculateLeftBoundary(LayeredBinaryTreeNode<?> attributedNode) {
+	LayeredBinaryTreeNode<?> leftNode = attributedNode.getLeftNode();
+	    LayeredBinaryTreeNode<?> rightNode = attributedNode.getRightNode();
+	List<LayeredBinaryTreeNode<?>> mainBoundary = leftNode.getLeftBoundary();
+	List<LayeredBinaryTreeNode<?>> fallbackBoundary = rightNode.getLeftBoundary();
 	return calculateBoundary(attributedNode, mainBoundary, fallbackBoundary);
     }
 
-    private List<LayeredBinaryTreeNode> calculateBoundary(LayeredBinaryTreeNode attributedNode, List<LayeredBinaryTreeNode> mainBoundary,
-	List<LayeredBinaryTreeNode> fallbackBoundary) {
-	List<LayeredBinaryTreeNode> boundary = new ArrayList<LayeredBinaryTreeNode>();
+    private List<LayeredBinaryTreeNode<?>> calculateBoundary(LayeredBinaryTreeNode<?> attributedNode, List<LayeredBinaryTreeNode<?>> mainBoundary,
+	List<LayeredBinaryTreeNode<?>> fallbackBoundary) {
+	List<LayeredBinaryTreeNode<?>> boundary = new ArrayList<LayeredBinaryTreeNode<?>>();
 	boundary.add(attributedNode);
 	boundary.addAll(mainBoundary);
 	if (mainBoundary.size() < fallbackBoundary.size()) {
@@ -139,8 +139,8 @@ public class LayeredBinaryTreeAlgorithm<T extends BinaryTreeNode<T> & DrawableTr
 	return boundary;
     }
 
-    private List<LayeredBinaryTreeNode> getAdditionalItems(List<LayeredBinaryTreeNode> mainBoundary,
-	List<LayeredBinaryTreeNode> fallbackBoundary) {
+    private List<LayeredBinaryTreeNode<?>> getAdditionalItems(List<LayeredBinaryTreeNode<?>> mainBoundary,
+	List<LayeredBinaryTreeNode<?>> fallbackBoundary) {
 	return fallbackBoundary.subList(mainBoundary.size(),
 	    fallbackBoundary.size());
     }

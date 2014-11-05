@@ -27,17 +27,17 @@ public class HVBinaryTreeAlgorithm<T extends BinaryTreeNode<T> & DrawableTreeNod
     @Override
     public void execute() {
 	for (T node : tree.createPostOrderIterable()) {
-	    HVBinaryTreeNode attributedNode = wrapNode(node);
+	    HVBinaryTreeNode<T> attributedNode = wrapNode(node);
 	    calculateOffsets(attributedNode);
 	    calculateBoundingBox(attributedNode);
 	}
 	for (T node : tree.createPreOrderIterable()) {
-	    HVBinaryTreeNode attributedNode = wrapNode(node);
+	    HVBinaryTreeNode<T> attributedNode = wrapNode(node);
 	    calculateCoordinates(attributedNode);
 	}
     }
 
-    private void calculateOffsets(HVBinaryTreeNode node) {
+    private void calculateOffsets(HVBinaryTreeNode<T> node) {
 
 	int offset = 1;
 	if (node.hasLeftNode()) {
@@ -69,7 +69,7 @@ public class HVBinaryTreeAlgorithm<T extends BinaryTreeNode<T> & DrawableTreeNod
 	}
     }
 
-    private void calculateBoundingBox(HVBinaryTreeNode node) {
+    private void calculateBoundingBox(HVBinaryTreeNode<T> node) {
 	int maxHeight = 0;
 	int maxWidth = 0;
 
@@ -114,12 +114,12 @@ public class HVBinaryTreeAlgorithm<T extends BinaryTreeNode<T> & DrawableTreeNod
 	node.setBoundingBoxWidth(maxWidth);
     }
 
-    private void calculateCoordinates(HVBinaryTreeNode node) {
+    private void calculateCoordinates(HVBinaryTreeNode<T> node) {
 	if (node.isRootNode()) {
 	    node.setX(0);
 	    node.setY(0);
 	} else {
-	    HVBinaryTreeNode parentNode = node.getParentNode();
+	    HVBinaryTreeNode<T> parentNode = node.getParentNode();
 	    node.setX(parentNode.getX() + node.getXOffset());
 	    node.setY(parentNode.getY() + node.getYOffset());
 	}
