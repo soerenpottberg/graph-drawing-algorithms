@@ -1,7 +1,7 @@
 package org.pottberg.gda.tree;
 
 
-public interface Tree<T extends TreeNode<T>> {
+public interface Tree<T extends TreeNode<T>> extends TreeInformation{
     
     T getRoot(); 
 

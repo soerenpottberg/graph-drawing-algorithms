@@ -16,7 +16,7 @@ public class PostOrderBinaryTreeIterable<T extends BinaryTreeNode<T>> implements
 
     @Override
     public Iterator<T> iterator() {
-	return new PostOrderBinaryTreeIterator<T>(binaryTree);
+	return new PostOrderBinaryTreeIterator<>(binaryTree);
     }
 
 }

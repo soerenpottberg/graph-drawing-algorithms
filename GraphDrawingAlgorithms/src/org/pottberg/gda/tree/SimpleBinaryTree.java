@@ -31,6 +31,21 @@ public class SimpleBinaryTree<T extends BinaryTreeNode<T>> implements
     }
 
     @Override
+    public int getHeight() {
+	return root.getHeight();
+    }
+
+    @Override
+    public int getDepth() {
+	return root.getDepth();
+    }
+
+    @Override
+    public int getWeight() {
+	return root.getWeight();
+    }
+
+    @Override
     public Iterable<T> createPostOrderIterable() {
 	return new PostOrderBinaryTreeIterable<T>(this);
     }

@@ -41,22 +41,22 @@ public class SimpleHVBinaryTreeAttributes implements HVBinaryTreeAttributes {
     }
 
     @Override
-    public int getWidth() {
+    public int getBoundingBoxWidth() {
 	return width;
     }
 
     @Override
-    public int getHeight() {
+    public int getBoundingBoxHeight() {
 	return height;
     }
 
     @Override
-    public void setWidth(int width) {
+    public void setBoundingBoxWidth(int width) {
 	this.width = width;
     }
 
     @Override
-    public void setHeight(int height) {
+    public void setBoundingBoxHeight(int height) {
 	this.height = height;	
     }
 

@@ -4,14 +4,15 @@ import org.pottberg.gda.node.AttributedNode;
 import org.pottberg.gda.node.NumberedNode;
 
 public abstract class AttributedBinaryTreeNodeBase<T extends AttributedBinaryTreeNodeBase<T>>
-    implements NumberedNode, BinaryTreeNode<T>, DrawableTreeNode<T>, AttributedNode {
+    implements NumberedNode, BinaryTreeNode<T>, DrawableTreeNode<T>,
+    AttributedNode {
 
     protected T parentNode;
     protected T leftNode;
     protected T rightNode;
     protected Long value;
-    protected int x;
-    protected int y;
+    protected double x;
+    protected double y;
     private Object attributes;
 
     public AttributedBinaryTreeNodeBase(Long value) {
@@ -82,34 +83,74 @@ public abstract class AttributedBinaryTreeNodeBase<T extends AttributedBinaryTre
     }
 
     @Override
-    public void setX(int x) {
+    public void setX(double x) {
 	this.x = x;
     }
 
     @Override
-    public void setY(int y) {
+    public void setY(double y) {
 	this.y = y;
     }
 
     @Override
-    public int getX() {
+    public double getX() {
 	return x;
     }
 
     @Override
-    public int getY() {
+    public double getY() {
 	return y;
     }
-    
+
     @SuppressWarnings("unchecked")
     @Override
     public <V> V getAttributes(Class<V> type) {
 	return (V) attributes;
     }
-    
-    @Override    
+
+    @Override
     public <V> void setAttributes(V attributes) {
-	this.attributes = attributes;	
+	this.attributes = attributes;
     };
+
+    @Override
+    public boolean isLeaveNode() {
+	return !hasLeftNode() && !hasRightNode();
+    }
+
+    @Override
+    public int getHeight() {
+	if (isLeaveNode()) {
+	    return 0;
+	}
+	int maxHeight = 0;
+	if (hasLeftNode()) {
+	    maxHeight = Math.max(maxHeight, getLeftNode().getHeight());
+	}
+	if (hasRightNode()) {
+	    maxHeight = Math.max(maxHeight, getRightNode().getHeight());
+	}
+	return maxHeight + 1;
+    }
+
+    @Override
+    public int getDepth() {
+	if (isRootNode()) {
+	    return 0;
+	}
+	return getParentNode().getDepth() + 1;
+    }
+
+    @Override
+    public int getWeight() {
+	int weight = 1;
+	if (hasLeftNode()) {
+	    weight += getLeftNode().getWeight();
+	}
+	if (hasRightNode()) {
+	    weight += getRightNode().getWeight();
+	}
+	return weight;
+    }
 
 }

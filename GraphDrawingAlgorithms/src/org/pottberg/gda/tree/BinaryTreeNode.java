@@ -1,7 +1,8 @@
 package org.pottberg.gda.tree;
 
+
 public interface BinaryTreeNode<T extends BinaryTreeNode<T>> extends
-    TreeNode<T> {
+    TreeNode<T>{
 
     boolean hasLeftNode();
 

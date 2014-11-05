@@ -5,11 +5,20 @@ import java.util.List;
 import org.pottberg.gda.node.AttributedNode;
 import org.pottberg.gda.tree.BinaryTreeNode;
 import org.pottberg.gda.tree.DrawableTreeNode;
+import org.pottberg.gda.tree.iterator.WrapperIterable;
 
 public class SimpleHVBinaryTreeNode<T extends BinaryTreeNode<T> & DrawableTreeNode<T> & AttributedNode>
     implements HVBinaryTreeNode {
 
     private T node;
+
+    public int getDepth() {
+	return node.getDepth();
+    }
+
+    public int getWeight() {
+	return node.getWeight();
+    }
 
     public SimpleHVBinaryTreeNode(T node) {
 	if (node == null) {
@@ -22,7 +31,7 @@ public class SimpleHVBinaryTreeNode<T extends BinaryTreeNode<T> & DrawableTreeNo
     }
 
     @Override
-    public void setX(int x) {
+    public void setX(double x) {
 	node.setX(x);
     }
 
@@ -32,7 +41,7 @@ public class SimpleHVBinaryTreeNode<T extends BinaryTreeNode<T> & DrawableTreeNo
     }
 
     @Override
-    public void setY(int y) {
+    public void setY(double y) {
 	node.setY(y);
     }
 
@@ -42,7 +51,7 @@ public class SimpleHVBinaryTreeNode<T extends BinaryTreeNode<T> & DrawableTreeNo
     }
 
     @Override
-    public int getX() {
+    public double getX() {
 	return node.getX();
     }
 
@@ -52,7 +61,7 @@ public class SimpleHVBinaryTreeNode<T extends BinaryTreeNode<T> & DrawableTreeNo
     }
 
     @Override
-    public int getY() {
+    public double getY() {
 	return node.getY();
     }
 
@@ -117,10 +126,10 @@ public class SimpleHVBinaryTreeNode<T extends BinaryTreeNode<T> & DrawableTreeNo
     }
 
     private SimpleHVBinaryTreeNode<T> wrapNode(T node) {
-        if (node == null) {
-            return null;
-        }
-        return new SimpleHVBinaryTreeNode<T>(node);
+	if (node == null) {
+	    return null;
+	}
+	return new SimpleHVBinaryTreeNode<>(node);
     }
 
     private HVBinaryTreeAttributes getAttributes() {
@@ -128,23 +137,27 @@ public class SimpleHVBinaryTreeNode<T extends BinaryTreeNode<T> & DrawableTreeNo
     }
 
     @Override
-    public int getWidth() {
-	return getAttributes().getWidth();
+    public int getBoundingBoxWidth() {
+	return getAttributes().getBoundingBoxWidth();
     }
 
     @Override
+    public int getBoundingBoxHeight() {
+	return getAttributes().getBoundingBoxHeight();
+    }
+
     public int getHeight() {
-	return getAttributes().getHeight();
+	return node.getHeight();
     }
 
     @Override
-    public void setWidth(int width) {
-	getAttributes().setWidth(width);
+    public void setBoundingBoxWidth(int width) {
+	getAttributes().setBoundingBoxWidth(width);
     }
 
     @Override
-    public void setHeight(int height) {
-	getAttributes().setHeight(height);
+    public void setBoundingBoxHeight(int height) {
+	getAttributes().setBoundingBoxHeight(height);
     }
 
     @Override
@@ -155,6 +168,18 @@ public class SimpleHVBinaryTreeNode<T extends BinaryTreeNode<T> & DrawableTreeNo
     @Override
     public int getYOffset() {
 	return getAttributes().getYOffset();
+    }
+
+    @Override
+    public Iterable<HVBinaryTreeNode> createChildNodeIterable() {
+	return new WrapperIterable<T, HVBinaryTreeNode>(
+	    node.createChildNodeIterable(),
+	    node -> new SimpleHVBinaryTreeNode<>(node));
+    }
+    
+    @Override
+    public boolean isLeaveNode() {
+	return node.isLeaveNode();
     }
 
 }

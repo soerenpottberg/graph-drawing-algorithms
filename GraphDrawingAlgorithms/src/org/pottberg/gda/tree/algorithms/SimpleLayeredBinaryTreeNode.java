@@ -5,6 +5,7 @@ import java.util.List;
 import org.pottberg.gda.node.AttributedNode;
 import org.pottberg.gda.tree.BinaryTreeNode;
 import org.pottberg.gda.tree.DrawableTreeNode;
+import org.pottberg.gda.tree.iterator.WrapperIterable;
 
 public class SimpleLayeredBinaryTreeNode<T extends BinaryTreeNode<T> & DrawableTreeNode<T> & AttributedNode>
     implements LayeredBinaryTreeNode {
@@ -22,7 +23,7 @@ public class SimpleLayeredBinaryTreeNode<T extends BinaryTreeNode<T> & DrawableT
     }
 
     @Override
-    public void setX(int x) {
+    public void setX(double x) {
 	node.setX(x);
     }
 
@@ -32,7 +33,7 @@ public class SimpleLayeredBinaryTreeNode<T extends BinaryTreeNode<T> & DrawableT
     }
 
     @Override
-    public void setY(int y) {
+    public void setY(double y) {
 	node.setY(y);
     }
 
@@ -42,7 +43,7 @@ public class SimpleLayeredBinaryTreeNode<T extends BinaryTreeNode<T> & DrawableT
     }
 
     @Override
-    public int getX() {
+    public double getX() {
 	return node.getX();
     }
 
@@ -52,7 +53,7 @@ public class SimpleLayeredBinaryTreeNode<T extends BinaryTreeNode<T> & DrawableT
     }
 
     @Override
-    public int getY() {
+    public double getY() {
 	return node.getY();
     }
 
@@ -125,6 +126,33 @@ public class SimpleLayeredBinaryTreeNode<T extends BinaryTreeNode<T> & DrawableT
 
     private LayeredBinaryTreeAttributes getAttributes() {
 	return node.getAttributes(LayeredBinaryTreeAttributes.class);
+    }
+    
+    @Override
+    public Iterable<LayeredBinaryTreeNode> createChildNodeIterable() {
+	return new WrapperIterable<T, LayeredBinaryTreeNode>(
+	    node.createChildNodeIterable(),
+	    node -> new SimpleLayeredBinaryTreeNode<>(node));
+    }
+    
+    @Override
+    public boolean isLeaveNode() {
+	return node.isLeaveNode();
+    }
+
+    @Override
+    public int getHeight() {
+	return node.getHeight();
+    }
+
+    @Override
+    public int getDepth() {
+	return node.getDepth();
+    }
+
+    @Override
+    public int getWeight() {
+	return node.getWeight();
     }
 
 }

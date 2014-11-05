@@ -12,13 +12,13 @@ public interface HVBinaryTreeAttributes {
 
     List<HVBinaryTreeNode> getRightBoundary();
 
-    int getWidth();
+    int getBoundingBoxWidth();
 
-    int getHeight();
+    int getBoundingBoxHeight();
 
-    void setWidth(int width);
+    void setBoundingBoxWidth(int width);
 
-    void setHeight(int height);
+    void setBoundingBoxHeight(int height);
 
     void setXOffset(int offset);
 
