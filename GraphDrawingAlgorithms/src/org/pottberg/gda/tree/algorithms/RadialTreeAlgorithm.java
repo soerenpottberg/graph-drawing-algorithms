@@ -16,50 +16,50 @@ public class RadialTreeAlgorithm<T extends DrawableTreeNode<T> & AttributedNode>
     @Override
     public void execute() {
 	for (T node : tree.createPostOrderIterable()) {
-	    RadialTreeNode attributedNode = wrapNode(node);
+	    RadialTreeNode<?> attributedNode = wrapNode(node);
 	    calculateNumberOfLeaveNodes(attributedNode);
 	}
 	for (T node : tree.createPreOrderIterable()) {
-	    RadialTreeNode attributedNode = wrapNode(node);
+	    RadialTreeNode<?> attributedNode = wrapNode(node);
 	    calculateLayer(attributedNode);
 	}
 	for (T node : tree.createPreOrderIterable()) {
-	    RadialTreeNode attributedNode = wrapNode(node);
+	    RadialTreeNode<?> attributedNode = wrapNode(node);
 	    calculateAdjustedAngle(attributedNode);
 	    calculateChildNodeAngleRanges(attributedNode);
 	    calculateCoordinates(attributedNode);
 	}
     }
 
-    private void calculateNumberOfLeaveNodes(RadialTreeNode node) {
+    private void calculateNumberOfLeaveNodes(RadialTreeNode<?> node) {
 	if (node.isLeaveNode()) {
 	    node.setLeaveNodeCount(1);
 	    return;
 	}
 	int numberOfLeaveNodes = 0;
-	for (RadialTreeNode child : node.createChildNodeIterable()) {
+	for (RadialTreeNode<?> child : node.createChildNodeIterable()) {
 	    numberOfLeaveNodes += child.getLeaveNodeCount();
 	}
 	node.setLeaveNodeCount(numberOfLeaveNodes);
     }
 
-    private void calculateLayer(RadialTreeNode node) {
+    private void calculateLayer(RadialTreeNode<?> node) {
 	if (node.isRootNode()) {
 	    node.setLayer(0);
 	} else {
-	    RadialTreeNode parentNode = node.getParentNode();
+	    RadialTreeNode<?> parentNode = node.getParentNode();
 	    node.setLayer(parentNode.getLevel() + 1);
 	}
     }
 
-    private void calculateChildNodeAngleRanges(RadialTreeNode node) {
+    private void calculateChildNodeAngleRanges(RadialTreeNode<?> node) {
 	if (node.isRootNode()) {
 	    node.setAngleRange(0, 2 * Math.PI);
 	}
 
 	int totalLeaveNodeCount = node.getLeaveNodeCount();
 	double startAngle = node.getStartAngle();
-	for (RadialTreeNode child : node.createChildNodeIterable()) {
+	for (RadialTreeNode<?> child : node.createChildNodeIterable()) {
 	    int currentLeaveNodeCount = child.getLeaveNodeCount();
 	    double angle = currentLeaveNodeCount / (double) totalLeaveNodeCount
 		* node.getAngle();
@@ -68,11 +68,11 @@ public class RadialTreeAlgorithm<T extends DrawableTreeNode<T> & AttributedNode>
 	}
     }
 
-    private void calculateAdjustedAngle(RadialTreeNode node) {
+    private void calculateAdjustedAngle(RadialTreeNode<?> node) {
 	if(node.isRootNode()) {
 	    return;
 	}
-	RadialTreeNode parentNode = node.getParentNode();
+	RadialTreeNode<?> parentNode = node.getParentNode();
 	if(parentNode.isRootNode()) {
 	    return;
 	}
@@ -85,13 +85,13 @@ public class RadialTreeAlgorithm<T extends DrawableTreeNode<T> & AttributedNode>
 	node.setAngleRange(startAngle, angle);
     }
 
-    private void calculateCoordinates(RadialTreeNode node) {
+    private void calculateCoordinates(RadialTreeNode<?> node) {
 	double angle = node.getMiddleAngle();
 	node.setX(node.getLevel() * Math.cos(angle));
 	node.setY(node.getLevel() * Math.sin(angle));
     }
 
-    private SimpleRadialTreeNode<T> wrapNode(T node) {
+    private RadialTreeNode<?> wrapNode(T node) {
 	return new SimpleRadialTreeNode<T>(node);
     }
 

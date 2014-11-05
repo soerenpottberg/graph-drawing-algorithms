@@ -27,53 +27,53 @@ public class HVBinaryTreeAlgorithm<T extends BinaryTreeNode<T> & DrawableTreeNod
     @Override
     public void execute() {
 	for (T node : tree.createPostOrderIterable()) {
-	    HVBinaryTreeNode<T> attributedNode = wrapNode(node);
+	    HVBinaryTreeNode<?> attributedNode = wrapNode(node);
 	    calculateOffsets(attributedNode);
 	    calculateBoundingBox(attributedNode);
 	}
 	for (T node : tree.createPreOrderIterable()) {
-	    HVBinaryTreeNode<T> attributedNode = wrapNode(node);
+	    HVBinaryTreeNode<?> attributedNode = wrapNode(node);
 	    calculateCoordinates(attributedNode);
 	}
     }
 
-    private void calculateOffsets(HVBinaryTreeNode<T> node) {
+    private void calculateOffsets(HVBinaryTreeNode<?> attributedNode) {
 
 	int offset = 1;
-	if (node.hasLeftNode()) {
-	    node.getLeftNode()
+	if (attributedNode.hasLeftNode()) {
+	    attributedNode.getLeftNode()
 		.setXOffset(0);
-	    node.getLeftNode()
+	    attributedNode.getLeftNode()
 		.setYOffset(offset);
 	}
 
-	if (node.hasRightNode()) {
-	    node.getRightNode()
+	if (attributedNode.hasRightNode()) {
+	    attributedNode.getRightNode()
 		.setXOffset(offset);
-	    node.getRightNode()
+	    attributedNode.getRightNode()
 		.setYOffset(0);
 	}
 
-	if (node.hasLeftNode() && node.hasRightNode()) {
+	if (attributedNode.hasLeftNode() && attributedNode.hasRightNode()) {
 	    if (combination == Combination.HORIZONTAL) {
-		offset += node.getLeftNode()
+		offset += attributedNode.getLeftNode()
 		    .getBoundingBoxWidth();
-		node.getRightNode()
+		attributedNode.getRightNode()
 		    .setXOffset(offset);
 	    } else {
-		offset += node.getRightNode()
+		offset += attributedNode.getRightNode()
 		    .getHeight();
-		node.getLeftNode()
+		attributedNode.getLeftNode()
 		    .setYOffset(offset);
 	    }
 	}
     }
 
-    private void calculateBoundingBox(HVBinaryTreeNode<T> node) {
+    private void calculateBoundingBox(HVBinaryTreeNode<?> attributedNode) {
 	int maxHeight = 0;
 	int maxWidth = 0;
 
-	if (node.hasLeftNode() && node.hasRightNode()) {
+	if (attributedNode.hasLeftNode() && attributedNode.hasRightNode()) {
 	    if (combination == Combination.HORIZONTAL) {
 		maxWidth += 1;
 	    } else {
@@ -82,50 +82,50 @@ public class HVBinaryTreeAlgorithm<T extends BinaryTreeNode<T> & DrawableTreeNod
 	}
 
 	if (combination == Combination.HORIZONTAL) {
-	    if (node.hasLeftNode()) {
-		maxHeight = Math.max(maxHeight, node.getLeftNode()
+	    if (attributedNode.hasLeftNode()) {
+		maxHeight = Math.max(maxHeight, attributedNode.getLeftNode()
 		    .getHeight() + 1);
-		maxWidth += node.getLeftNode()
+		maxWidth += attributedNode.getLeftNode()
 		    .getBoundingBoxWidth();
 	    }
-	    if (node.hasRightNode()) {
-		maxHeight = Math.max(maxHeight, node.getRightNode()
+	    if (attributedNode.hasRightNode()) {
+		maxHeight = Math.max(maxHeight, attributedNode.getRightNode()
 		    .getHeight());
-		maxWidth += node.getRightNode()
+		maxWidth += attributedNode.getRightNode()
 		    .getBoundingBoxWidth();
 	    }
 
 	} else {
-	    if (node.hasLeftNode()) {
-		maxHeight = node.getLeftNode()
+	    if (attributedNode.hasLeftNode()) {
+		maxHeight = attributedNode.getLeftNode()
 		    .getHeight();
-		maxWidth = Math.max(maxWidth, node.getLeftNode()
+		maxWidth = Math.max(maxWidth, attributedNode.getLeftNode()
 		    .getBoundingBoxWidth());
 	    }
-	    if (node.hasRightNode()) {
-		maxHeight += node.getRightNode()
+	    if (attributedNode.hasRightNode()) {
+		maxHeight += attributedNode.getRightNode()
 		    .getHeight();
-		maxWidth = Math.max(maxWidth, node.getRightNode()
+		maxWidth = Math.max(maxWidth, attributedNode.getRightNode()
 		    .getBoundingBoxWidth() + 1);
 	    }
 
 	}
-	node.setBoundingBoxHeight(maxHeight);
-	node.setBoundingBoxWidth(maxWidth);
+	attributedNode.setBoundingBoxHeight(maxHeight);
+	attributedNode.setBoundingBoxWidth(maxWidth);
     }
 
-    private void calculateCoordinates(HVBinaryTreeNode<T> node) {
-	if (node.isRootNode()) {
-	    node.setX(0);
-	    node.setY(0);
+    private void calculateCoordinates(HVBinaryTreeNode<?> attributedNode) {
+	if (attributedNode.isRootNode()) {
+	    attributedNode.setX(0);
+	    attributedNode.setY(0);
 	} else {
-	    HVBinaryTreeNode<T> parentNode = node.getParentNode();
-	    node.setX(parentNode.getX() + node.getXOffset());
-	    node.setY(parentNode.getY() + node.getYOffset());
+	    HVBinaryTreeNode<?> parentNode = attributedNode.getParentNode();
+	    attributedNode.setX(parentNode.getX() + attributedNode.getXOffset());
+	    attributedNode.setY(parentNode.getY() + attributedNode.getYOffset());
 	}
     }
 
-    private SimpleHVBinaryTreeNode<T> wrapNode(T node) {
+    private HVBinaryTreeNode<?> wrapNode(T node) {
 	return new SimpleHVBinaryTreeNode<T>(node);
     }
 

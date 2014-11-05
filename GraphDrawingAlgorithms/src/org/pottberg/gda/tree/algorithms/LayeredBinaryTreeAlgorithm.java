@@ -21,12 +21,12 @@ public class LayeredBinaryTreeAlgorithm<T extends BinaryTreeNode<T> & DrawableTr
     @Override
     public void execute() {
 	for (T node : tree.createPostOrderIterable()) {
-	    LayeredBinaryTreeNode<?> attributedNode = new SimpleLayeredBinaryTreeNode<T>(node);
+	    LayeredBinaryTreeNode<?> attributedNode = wrapNode(node);
 	    calculateBoundaries(attributedNode);
 	    calculateMinimalDistance(attributedNode);
 	}
 	for (T node : tree.createPreOrderIterable()) {
-	    LayeredBinaryTreeNode<?> attributedNode = new SimpleLayeredBinaryTreeNode<T>(node);
+	    LayeredBinaryTreeNode<?> attributedNode = wrapNode(node);
 	    calculateCoordinates(attributedNode);
 	}
     }
@@ -143,6 +143,10 @@ public class LayeredBinaryTreeAlgorithm<T extends BinaryTreeNode<T> & DrawableTr
 	List<LayeredBinaryTreeNode<?>> fallbackBoundary) {
 	return fallbackBoundary.subList(mainBoundary.size(),
 	    fallbackBoundary.size());
+    }
+
+    private LayeredBinaryTreeNode<?> wrapNode(T node) {
+        return new SimpleLayeredBinaryTreeNode<T>(node);
     }
 
 }
