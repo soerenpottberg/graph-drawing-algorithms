@@ -1,6 +1,8 @@
-package org.pottberg.gda.tree.algorithms;
+package org.pottberg.gda.tree.attributes;
 
 import java.util.List;
+
+import org.pottberg.gda.tree.nodes.LayeredBinaryTreeNode;
 
 public interface LayeredBinaryTreeAttributes {
 

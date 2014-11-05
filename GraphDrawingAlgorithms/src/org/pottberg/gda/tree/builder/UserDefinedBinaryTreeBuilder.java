@@ -3,10 +3,10 @@ package org.pottberg.gda.tree.builder;
 import java.util.function.Function;
 
 import org.pottberg.gda.node.NumberedNode;
-import org.pottberg.gda.tree.BinaryTreeNode;
-import org.pottberg.gda.tree.AttributedBinaryTreeNodeBase;
 import org.pottberg.gda.tree.BinaryTree;
 import org.pottberg.gda.tree.SimpleBinaryTree;
+import org.pottberg.gda.tree.nodes.AttributedBinaryTreeNodeBase;
+import org.pottberg.gda.tree.nodes.BinaryTreeNode;
 
 public class UserDefinedBinaryTreeBuilder {
 

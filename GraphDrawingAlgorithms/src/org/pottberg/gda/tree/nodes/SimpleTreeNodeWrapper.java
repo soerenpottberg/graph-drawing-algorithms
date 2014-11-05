@@ -1,7 +1,6 @@
-package org.pottberg.gda.tree;
+package org.pottberg.gda.tree.nodes;
 
 import org.pottberg.gda.node.AttributedNode;
-import org.pottberg.gda.tree.algorithms.TreeNodeWrapper;
 import org.pottberg.gda.tree.iterator.WrapperIterable;
 
 public abstract class SimpleTreeNodeWrapper<T extends DrawableTreeNode<T> & AttributedNode, R extends TreeNodeWrapper<T, R, E>, E>

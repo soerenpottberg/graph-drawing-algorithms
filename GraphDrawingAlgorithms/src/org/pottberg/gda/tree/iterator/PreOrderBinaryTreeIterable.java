@@ -3,7 +3,7 @@ package org.pottberg.gda.tree.iterator;
 import java.util.Iterator;
 
 import org.pottberg.gda.tree.BinaryTree;
-import org.pottberg.gda.tree.BinaryTreeNode;
+import org.pottberg.gda.tree.nodes.BinaryTreeNode;
 
 public class PreOrderBinaryTreeIterable<T extends BinaryTreeNode<T>> implements
     Iterable<T> {

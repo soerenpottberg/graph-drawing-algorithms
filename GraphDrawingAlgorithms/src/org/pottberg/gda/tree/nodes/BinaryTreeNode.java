@@ -1,4 +1,5 @@
-package org.pottberg.gda.tree;
+package org.pottberg.gda.tree.nodes;
+
 
 
 public interface BinaryTreeNode<T extends BinaryTreeNode<T>> extends

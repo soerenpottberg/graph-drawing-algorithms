@@ -1,7 +1,7 @@
 package org.pottberg.gda.tree.builder;
 
 import org.pottberg.gda.node.ValueNode;
-import org.pottberg.gda.tree.BinaryTreeNode;
+import org.pottberg.gda.tree.nodes.BinaryTreeNode;
 
 public interface BinaryTreeRightNodeBuilder<T extends BinaryTreeNode<T> & ValueNode<V>, V>
     extends BinaryTreeFinisher<T, V> {

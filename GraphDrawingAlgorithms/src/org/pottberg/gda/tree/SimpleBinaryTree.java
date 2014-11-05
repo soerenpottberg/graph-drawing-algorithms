@@ -2,6 +2,7 @@ package org.pottberg.gda.tree;
 
 import org.pottberg.gda.tree.iterator.PostOrderBinaryTreeIterable;
 import org.pottberg.gda.tree.iterator.PreOrderBinaryTreeIterable;
+import org.pottberg.gda.tree.nodes.BinaryTreeNode;
 
 public class SimpleBinaryTree<T extends BinaryTreeNode<T>> implements
     BinaryTree<T> {

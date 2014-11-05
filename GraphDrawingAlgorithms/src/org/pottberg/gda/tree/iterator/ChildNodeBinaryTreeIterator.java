@@ -3,7 +3,7 @@ package org.pottberg.gda.tree.iterator;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-import org.pottberg.gda.tree.BinaryTreeNode;
+import org.pottberg.gda.tree.nodes.BinaryTreeNode;
 
 public class ChildNodeBinaryTreeIterator<E extends BinaryTreeNode<E>> implements
     Iterator<E> {

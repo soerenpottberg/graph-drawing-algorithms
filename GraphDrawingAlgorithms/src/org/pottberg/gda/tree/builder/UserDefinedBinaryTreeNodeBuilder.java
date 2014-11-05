@@ -2,8 +2,8 @@ package org.pottberg.gda.tree.builder;
 
 import org.pottberg.gda.node.NumberedNode;
 import org.pottberg.gda.tree.BinaryTree;
-import org.pottberg.gda.tree.AttributedBinaryTreeNodeBase;
 import org.pottberg.gda.tree.SimpleBinaryTree;
+import org.pottberg.gda.tree.nodes.AttributedBinaryTreeNodeBase;
 
 public class UserDefinedBinaryTreeNodeBuilder<T extends AttributedBinaryTreeNodeBase<T> & NumberedNode>
     extends BinaryTreeNodeBuilder<T, Long> {

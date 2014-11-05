@@ -1,4 +1,4 @@
-package org.pottberg.gda;
+package org.pottberg.gda.gui.controller;
 
 import static org.pottberg.gda.tree.builder.SimpleBinaryTreeBuilder.createNode;
 import static org.pottberg.gda.tree.builder.SimpleBinaryTreeBuilder.createTree;
@@ -18,13 +18,13 @@ import javafx.scene.text.TextAlignment;
 import javafx.scene.text.TextBoundsType;
 
 import org.pottberg.gda.tree.BinaryTree;
-import org.pottberg.gda.tree.DrawableTreeNode;
-import org.pottberg.gda.tree.SimpleBinaryTreeNode;
 import org.pottberg.gda.tree.algorithms.BinaryTreeAlgorithm;
 import org.pottberg.gda.tree.algorithms.HVBinaryTreeAlgorithm;
-import org.pottberg.gda.tree.algorithms.HVBinaryTreeAlgorithm.Combination;
 import org.pottberg.gda.tree.algorithms.LayeredBinaryTreeAlgorithm;
 import org.pottberg.gda.tree.algorithms.RadialTreeAlgorithm;
+import org.pottberg.gda.tree.algorithms.HVBinaryTreeAlgorithm.Combination;
+import org.pottberg.gda.tree.nodes.DrawableTreeNode;
+import org.pottberg.gda.tree.nodes.SimpleBinaryTreeNode;
 
 public class GraphDrawingAlgorithmsController {
 

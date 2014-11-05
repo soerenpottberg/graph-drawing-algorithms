@@ -6,7 +6,7 @@ import static org.pottberg.gda.tree.builder.SimpleBinaryTreeBuilder.createTree;
 
 import org.junit.Test;
 import org.pottberg.gda.tree.BinaryTree;
-import org.pottberg.gda.tree.SimpleBinaryTreeNode;
+import org.pottberg.gda.tree.nodes.SimpleBinaryTreeNode;
 
 public class SimpleBinaryTreeBuilderTest {
 

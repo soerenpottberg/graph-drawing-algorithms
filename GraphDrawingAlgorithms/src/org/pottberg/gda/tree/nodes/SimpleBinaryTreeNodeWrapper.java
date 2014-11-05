@@ -1,7 +1,6 @@
-package org.pottberg.gda.tree;
+package org.pottberg.gda.tree.nodes;
 
 import org.pottberg.gda.node.AttributedNode;
-import org.pottberg.gda.tree.algorithms.BinaryTreeNodeWrapper;
 
 public abstract class SimpleBinaryTreeNodeWrapper<T extends BinaryTreeNode<T> & DrawableTreeNode<T> & AttributedNode, R extends BinaryTreeNodeWrapper<T, R, E>, E>
     extends SimpleTreeNodeWrapper<T, R, E> implements

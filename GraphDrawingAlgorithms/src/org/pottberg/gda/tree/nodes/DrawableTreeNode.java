@@ -1,4 +1,4 @@
-package org.pottberg.gda.tree;
+package org.pottberg.gda.tree.nodes;
 
 import org.pottberg.gda.node.DrawableNode;
 

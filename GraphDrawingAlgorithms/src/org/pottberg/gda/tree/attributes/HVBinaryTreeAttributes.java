@@ -1,4 +1,4 @@
-package org.pottberg.gda.tree.algorithms;
+package org.pottberg.gda.tree.attributes;
 
 
 public interface HVBinaryTreeAttributes {

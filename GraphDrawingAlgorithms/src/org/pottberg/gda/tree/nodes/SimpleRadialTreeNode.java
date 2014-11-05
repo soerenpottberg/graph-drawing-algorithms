@@ -1,8 +1,8 @@
-package org.pottberg.gda.tree.algorithms;
+package org.pottberg.gda.tree.nodes;
 
 import org.pottberg.gda.node.AttributedNode;
-import org.pottberg.gda.tree.DrawableTreeNode;
-import org.pottberg.gda.tree.SimpleTreeNodeWrapper;
+import org.pottberg.gda.tree.attributes.RadialTreeAttributes;
+import org.pottberg.gda.tree.attributes.SimpleRadialTreeAttributes;
 
 public class SimpleRadialTreeNode<T extends DrawableTreeNode<T> & AttributedNode>
     extends SimpleTreeNodeWrapper<T, RadialTreeNode<T>, RadialTreeAttributes>implements RadialTreeNode<T> {

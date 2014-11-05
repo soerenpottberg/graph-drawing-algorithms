@@ -1,4 +1,5 @@
-package org.pottberg.gda.tree.algorithms;
+package org.pottberg.gda.tree.attributes;
+
 
 
 public class SimpleHVBinaryTreeAttributes implements HVBinaryTreeAttributes {

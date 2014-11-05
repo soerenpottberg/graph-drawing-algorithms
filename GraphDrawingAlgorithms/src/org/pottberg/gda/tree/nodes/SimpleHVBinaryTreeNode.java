@@ -1,9 +1,8 @@
-package org.pottberg.gda.tree.algorithms;
+package org.pottberg.gda.tree.nodes;
 
 import org.pottberg.gda.node.AttributedNode;
-import org.pottberg.gda.tree.BinaryTreeNode;
-import org.pottberg.gda.tree.DrawableTreeNode;
-import org.pottberg.gda.tree.SimpleBinaryTreeNodeWrapper;
+import org.pottberg.gda.tree.attributes.HVBinaryTreeAttributes;
+import org.pottberg.gda.tree.attributes.SimpleHVBinaryTreeAttributes;
 
 public class SimpleHVBinaryTreeNode<T extends BinaryTreeNode<T> & DrawableTreeNode<T> & AttributedNode>
     extends SimpleBinaryTreeNodeWrapper<T, HVBinaryTreeNode<T>, HVBinaryTreeAttributes> implements HVBinaryTreeNode<T> {

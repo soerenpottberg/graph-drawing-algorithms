@@ -11,9 +11,9 @@ public class GraphDrawingAlgorithms extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		try {
-			BorderPane root = (BorderPane)FXMLLoader.load(getClass().getResource("GraphDrawingAlgorithms.fxml"));
+			BorderPane root = (BorderPane)FXMLLoader.load(getClass().getResource("gui\\view\\GraphDrawingAlgorithms.fxml"));
 			Scene scene = new Scene(root,800,800);
-			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+			scene.getStylesheets().add(getClass().getResource("gui\\view\\application.css").toExternalForm());
 			primaryStage.setScene(scene);
 			primaryStage.show();
 		} catch(Exception e) {

@@ -1,11 +1,10 @@
-package org.pottberg.gda.tree.algorithms;
+package org.pottberg.gda.tree.nodes;
 
 import java.util.List;
 
 import org.pottberg.gda.node.AttributedNode;
-import org.pottberg.gda.tree.BinaryTreeNode;
-import org.pottberg.gda.tree.DrawableTreeNode;
-import org.pottberg.gda.tree.SimpleBinaryTreeNodeWrapper;
+import org.pottberg.gda.tree.attributes.LayeredBinaryTreeAttributes;
+import org.pottberg.gda.tree.attributes.SimpleLayeredBinaryTreeAttributes;
 
 public class SimpleLayeredBinaryTreeNode<T extends BinaryTreeNode<T> & DrawableTreeNode<T> & AttributedNode>
     extends

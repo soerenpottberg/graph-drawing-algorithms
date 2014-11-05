@@ -9,7 +9,7 @@ import static org.pottberg.gda.tree.builder.SimpleBinaryTreeBuilder.createTree;
 import java.util.Iterator;
 
 import org.pottberg.gda.tree.BinaryTree;
-import org.pottberg.gda.tree.SimpleBinaryTreeNode;
+import org.pottberg.gda.tree.nodes.SimpleBinaryTreeNode;
 
 public abstract class BinaryTreeIteratorTest {
 

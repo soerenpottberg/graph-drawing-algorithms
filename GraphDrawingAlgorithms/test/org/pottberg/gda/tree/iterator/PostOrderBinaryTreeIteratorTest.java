@@ -8,7 +8,7 @@ import java.util.NoSuchElementException;
 
 import org.junit.Test;
 import org.pottberg.gda.tree.BinaryTree;
-import org.pottberg.gda.tree.SimpleBinaryTreeNode;
+import org.pottberg.gda.tree.nodes.SimpleBinaryTreeNode;
 
 public class PostOrderBinaryTreeIteratorTest extends BinaryTreeIteratorTest {
 

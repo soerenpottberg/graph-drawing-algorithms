@@ -5,8 +5,10 @@ import java.util.List;
 
 import org.pottberg.gda.node.AttributedNode;
 import org.pottberg.gda.tree.BinaryTree;
-import org.pottberg.gda.tree.BinaryTreeNode;
-import org.pottberg.gda.tree.DrawableTreeNode;
+import org.pottberg.gda.tree.nodes.BinaryTreeNode;
+import org.pottberg.gda.tree.nodes.DrawableTreeNode;
+import org.pottberg.gda.tree.nodes.LayeredBinaryTreeNode;
+import org.pottberg.gda.tree.nodes.SimpleLayeredBinaryTreeNode;
 
 public class LayeredBinaryTreeAlgorithm<T extends BinaryTreeNode<T> & DrawableTreeNode<T> & AttributedNode>
     implements BinaryTreeAlgorithm {

@@ -1,11 +1,13 @@
 package org.pottberg.gda.tree.algorithms;
 
 import org.pottberg.gda.node.AttributedNode;
-import org.pottberg.gda.tree.DrawableTreeNode;
 import org.pottberg.gda.tree.Tree;
+import org.pottberg.gda.tree.nodes.DrawableTreeNode;
+import org.pottberg.gda.tree.nodes.RadialTreeNode;
+import org.pottberg.gda.tree.nodes.SimpleRadialTreeNode;
 
 public class RadialTreeAlgorithm<T extends DrawableTreeNode<T> & AttributedNode>
-    implements TreeAlgorithm, BinaryTreeAlgorithm {
+    implements TreeAlgorithm {
 
     private Tree<T> tree;
 
@@ -30,10 +32,10 @@ public class RadialTreeAlgorithm<T extends DrawableTreeNode<T> & AttributedNode>
 	    calculateCoordinates(attributedNode);
 	}
     }
-    
+
     @Override
     public boolean isRadialLayout() {
-        return true;
+	return true;
     }
 
     private void calculateNumberOfLeaveNodes(RadialTreeNode<?> node) {
@@ -74,11 +76,11 @@ public class RadialTreeAlgorithm<T extends DrawableTreeNode<T> & AttributedNode>
     }
 
     private void calculateAdjustedAngle(RadialTreeNode<?> node) {
-	if(node.isRootNode()) {
+	if (node.isRootNode()) {
 	    return;
 	}
 	RadialTreeNode<?> parentNode = node.getParentNode();
-	if(parentNode.isRootNode()) {
+	if (parentNode.isRootNode()) {
 	    return;
 	}
 	double delta = Math.acos(parentNode.getLevel()

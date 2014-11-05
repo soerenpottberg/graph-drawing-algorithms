@@ -2,8 +2,10 @@ package org.pottberg.gda.tree.algorithms;
 
 import org.pottberg.gda.node.AttributedNode;
 import org.pottberg.gda.tree.BinaryTree;
-import org.pottberg.gda.tree.BinaryTreeNode;
-import org.pottberg.gda.tree.DrawableTreeNode;
+import org.pottberg.gda.tree.nodes.BinaryTreeNode;
+import org.pottberg.gda.tree.nodes.DrawableTreeNode;
+import org.pottberg.gda.tree.nodes.HVBinaryTreeNode;
+import org.pottberg.gda.tree.nodes.SimpleHVBinaryTreeNode;
 
 public class HVBinaryTreeAlgorithm<T extends BinaryTreeNode<T> & DrawableTreeNode<T> & AttributedNode>
     implements BinaryTreeAlgorithm {
