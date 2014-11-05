@@ -1,7 +1,5 @@
 package org.pottberg.gda.tree.algorithms;
 
-import java.util.List;
-
 import org.pottberg.gda.node.AttributedNode;
 import org.pottberg.gda.tree.BinaryTreeNode;
 import org.pottberg.gda.tree.DrawableTreeNode;
@@ -93,26 +91,6 @@ public class SimpleHVBinaryTreeNode<T extends BinaryTreeNode<T> & DrawableTreeNo
     @Override
     public void setRightNode(HVBinaryTreeNode node) {
 	node.setRightNode(node);
-    }
-
-    @Override
-    public void setLeftBoundary(List<HVBinaryTreeNode> boundary) {
-	getAttributes().setLeftBoundary(boundary);
-    }
-
-    @Override
-    public void setRightBoundary(List<HVBinaryTreeNode> boundary) {
-	getAttributes().setRightBoundary(boundary);
-    }
-
-    @Override
-    public List<HVBinaryTreeNode> getLeftBoundary() {
-	return getAttributes().getLeftBoundary();
-    }
-
-    @Override
-    public List<HVBinaryTreeNode> getRightBoundary() {
-	return getAttributes().getRightBoundary();
     }
 
     @Override
