@@ -77,6 +77,16 @@ public abstract class SimpleTreeNodeWrapper<T extends DrawableTreeNode<T> & Attr
     }
     
     @Override
+    public R getChildNode(int index) {
+	return wrapNode(wrappedNode.getChildNode(index));
+    }
+
+    @Override
+    public void addChildNode(R node) {
+	wrappedNode.addChildNode(node.getWrappedNode());
+    }
+    
+    @Override
     public T getWrappedNode() {
 	return wrappedNode;
     }

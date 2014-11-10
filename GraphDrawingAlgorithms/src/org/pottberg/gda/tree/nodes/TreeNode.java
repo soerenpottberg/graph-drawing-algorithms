@@ -14,5 +14,9 @@ public interface TreeNode<T extends TreeNode<T>> extends TreeInformation {
    T getThisNode();
    
    Iterable<T> createChildNodeIterable();
+   
+   T getChildNode(int index);
+   
+   void addChildNode(T node);
 
 }
