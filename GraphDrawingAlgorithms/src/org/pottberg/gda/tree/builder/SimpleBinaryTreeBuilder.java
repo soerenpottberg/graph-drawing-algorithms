@@ -6,23 +6,23 @@ import org.pottberg.gda.tree.nodes.SimpleBinaryTreeNode;
 
 public class SimpleBinaryTreeBuilder{
 
-    public static BinaryTree<SimpleBinaryTreeNode> createTree() {
+    public static BinaryTree<SimpleBinaryTreeNode> createBinaryTree() {
 	return new SimpleBinaryTree<SimpleBinaryTreeNode>();
     }
 
-    public static BinaryTree<SimpleBinaryTreeNode> createTree(
+    public static BinaryTree<SimpleBinaryTreeNode> createBinaryTree(
 	BinaryTreeFinisher<SimpleBinaryTreeNode, Long> builder) {
-	SimpleBinaryTreeNode node = builder.buildNode(SimpleBinaryTreeBuilder::createBinaryTreeNode);
-	return new SimpleBinaryTreeNodeBuilder(node).buildTree(SimpleBinaryTreeBuilder::createBinaryTreeNode);
+	SimpleBinaryTreeNode node = builder.buildNode(SimpleBinaryTreeBuilder::binaryTreeNodeFactory);
+	return new SimpleBinaryTreeNodeBuilder(node).buildTree(SimpleBinaryTreeBuilder::binaryTreeNodeFactory);
     }
 
-    public static BinaryTreeNodeBuilder<SimpleBinaryTreeNode, Long> createNode(
+    public static BinaryTreeNodeBuilder<SimpleBinaryTreeNode, Long> createBinaryTreeNode(
 	Long value) {
 	SimpleBinaryTreeNode node = new SimpleBinaryTreeNode(value);
 	return new SimpleBinaryTreeNodeBuilder(node);
     }
 
-    protected static SimpleBinaryTreeNode createBinaryTreeNode(Long value) {
+    protected static SimpleBinaryTreeNode binaryTreeNodeFactory(Long value) {
 	return new SimpleBinaryTreeNode(value);
     }
 

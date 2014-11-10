@@ -1,8 +1,8 @@
 package org.pottberg.gda.tree.builder;
 
 import static org.junit.Assert.*;
-import static org.pottberg.gda.tree.builder.SimpleBinaryTreeBuilder.createNode;
-import static org.pottberg.gda.tree.builder.SimpleBinaryTreeBuilder.createTree;
+import static org.pottberg.gda.tree.builder.SimpleBinaryTreeBuilder.createBinaryTreeNode;
+import static org.pottberg.gda.tree.builder.SimpleBinaryTreeBuilder.createBinaryTree;
 
 import org.junit.Test;
 import org.pottberg.gda.tree.BinaryTree;
@@ -12,8 +12,8 @@ public class SimpleBinaryTreeBuilderTest {
 
     @Test
     public void testSimpleTree() {
-	BinaryTree<SimpleBinaryTreeNode> tree = createTree(
-	    createNode(0l)
+	BinaryTree<SimpleBinaryTreeNode> tree = createBinaryTree(
+	    createBinaryTreeNode(0l)
 		.addLeftChild(1l)
 		.addRightChild(2l));
 	SimpleBinaryTreeNode root = tree.getRoot();
@@ -26,8 +26,8 @@ public class SimpleBinaryTreeBuilderTest {
 
     @Test
     public void testLeftOnly() {
-	BinaryTree<SimpleBinaryTreeNode> tree = createTree(
-	    createNode(0l).addLeftChild(1l));
+	BinaryTree<SimpleBinaryTreeNode> tree = createBinaryTree(
+	    createBinaryTreeNode(0l).addLeftChild(1l));
 	SimpleBinaryTreeNode root = tree.getRoot();
 	assertEquals(new Long(0), root.getValue());
 	assertEquals(new Long(1), root.getLeftNode()
@@ -37,8 +37,8 @@ public class SimpleBinaryTreeBuilderTest {
 
     @Test
     public void testRightOnly() {
-	BinaryTree<SimpleBinaryTreeNode> tree = createTree(
-	    createNode(0l).addRightChild(2l));
+	BinaryTree<SimpleBinaryTreeNode> tree = createBinaryTree(
+	    createBinaryTreeNode(0l).addRightChild(2l));
 	SimpleBinaryTreeNode root = tree.getRoot();
 	assertEquals(new Long(0), root.getValue());
 	assertNull(root.getLeftNode());
@@ -48,9 +48,9 @@ public class SimpleBinaryTreeBuilderTest {
 
     @Test
     public void testComplexTree() {
-	BinaryTree<SimpleBinaryTreeNode> tree = createTree(createNode(0l)
+	BinaryTree<SimpleBinaryTreeNode> tree = createBinaryTree(createBinaryTreeNode(0l)
 	    .addLeftChild(
-		createNode(1l).addLeftChild(11l)
+		createBinaryTreeNode(1l).addLeftChild(11l)
 	    )
 	    .addRightChild(2l));
 	SimpleBinaryTreeNode root = tree.getRoot();
@@ -66,10 +66,10 @@ public class SimpleBinaryTreeBuilderTest {
 
     @Test
     public void testComplexTreeSimplified() {
-	BinaryTree<SimpleBinaryTreeNode> tree = createTree(
-	    createNode(0l)
+	BinaryTree<SimpleBinaryTreeNode> tree = createBinaryTree(
+	    createBinaryTreeNode(0l)
 		.addLeftChild(
-		    createNode(1l).addLeftChild(11l)
+		    createBinaryTreeNode(1l).addLeftChild(11l)
 		)
 		.addRightChild(2l)
 	    );

@@ -1,7 +1,9 @@
 package org.pottberg.gda.gui.controller;
 
-import static org.pottberg.gda.tree.builder.SimpleBinaryTreeBuilder.createNode;
-import static org.pottberg.gda.tree.builder.SimpleBinaryTreeBuilder.createTree;
+import static org.pottberg.gda.tree.builder.SimpleBinaryTreeBuilder.createBinaryTree;
+import static org.pottberg.gda.tree.builder.SimpleBinaryTreeBuilder.createBinaryTreeNode;
+import static org.pottberg.gda.tree.builder.SimpleTreeBuilder.createNode;
+import static org.pottberg.gda.tree.builder.SimpleTreeBuilder.createTree;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,28 +20,39 @@ import javafx.scene.text.TextAlignment;
 import javafx.scene.text.TextBoundsType;
 
 import org.pottberg.gda.tree.BinaryTree;
+import org.pottberg.gda.tree.Tree;
 import org.pottberg.gda.tree.algorithms.BinaryTreeAlgorithm;
 import org.pottberg.gda.tree.algorithms.HVBinaryTreeAlgorithm;
+import org.pottberg.gda.tree.algorithms.HVBinaryTreeAlgorithm.Combination;
 import org.pottberg.gda.tree.algorithms.LayeredBinaryTreeAlgorithm;
 import org.pottberg.gda.tree.algorithms.RadialTreeAlgorithm;
-import org.pottberg.gda.tree.algorithms.HVBinaryTreeAlgorithm.Combination;
+import org.pottberg.gda.tree.algorithms.TreeAlgorithm;
 import org.pottberg.gda.tree.nodes.DrawableTreeNode;
 import org.pottberg.gda.tree.nodes.SimpleBinaryTreeNode;
+import org.pottberg.gda.tree.nodes.SimpleTreeNode;
 
 public class GraphDrawingAlgorithmsController {
 
     @FXML
-    private FlowPane canvasList;
+    private FlowPane binaryTreesCanvasList;
+
+    @FXML
+    private FlowPane abitraryTreesCanvasList;
 
     @FXML
     private void initialize() {
-	BinaryTree<SimpleBinaryTreeNode> tree = createTree(
-	    createNode(0l)
-		.addLeftChild(createNode(1l)
-		    .addLeftChild(createNode(11l)
+	showBinaryTreeAlgorithms();
+	showAbitraryTreeAlgorithms();
+    }
+
+    private void showBinaryTreeAlgorithms() {
+	BinaryTree<SimpleBinaryTreeNode> tree = createBinaryTree(
+	    createBinaryTreeNode(0l)
+		.addLeftChild(createBinaryTreeNode(1l)
+		    .addLeftChild(createBinaryTreeNode(11l)
 			.addLeftChild(111l)
 			.addRightChild(112l))
-		    .addRightChild(createNode(12l)
+		    .addRightChild(createBinaryTreeNode(12l)
 			.addLeftChild(121l)
 			.addRightChild(122l))
 		)
@@ -52,17 +65,51 @@ public class GraphDrawingAlgorithmsController {
 	algorithms.add(new RadialTreeAlgorithm<SimpleBinaryTreeNode>(tree));
 	algorithms.add(new LayeredBinaryTreeAlgorithm<SimpleBinaryTreeNode>(
 	    tree));
-	
+
 	for (BinaryTreeAlgorithm algorithm : algorithms) {
 	    algorithm.execute();
 	    Group canvas = new Group();
-	    drawNodes(tree, canvas, algorithm.isRadialLayout());
-	    canvasList.getChildren()
+	    drawTree(tree, canvas, algorithm.isRadialLayout());
+	    binaryTreesCanvasList.getChildren()
 		.add(canvas);
 	}
     }
 
-    private void drawNodes(BinaryTree<SimpleBinaryTreeNode> tree, Group canvas,
+    private void showAbitraryTreeAlgorithms() {
+	Tree<SimpleTreeNode> tree = createTree(
+	    createNode(0l)
+		.addChild(createNode(1l)
+		    .addChild(createNode(11l)
+			.addChild(111l)
+			.addChild(112l))
+		    .addChild(createNode(12l)
+			.addChild(121l)
+			.addChild(122l)
+			.addChild(123l))
+		)
+		.addChild(createNode(2l)
+		    .addChild(createNode(21l)
+			.addChild(211l)
+			.addChild(212l)
+			.addChild(213l)
+		    )
+		)
+		.addChild(createNode(3l))
+	    );
+	List<TreeAlgorithm> algorithms = new ArrayList<>();
+	algorithms.add(new RadialTreeAlgorithm<SimpleTreeNode>(tree));
+
+	for (BinaryTreeAlgorithm algorithm : algorithms) {
+	    algorithm.execute();
+	    Group canvas = new Group();
+	    drawTree(tree, canvas, algorithm.isRadialLayout());
+	    abitraryTreesCanvasList.getChildren()
+		.add(canvas);
+	}
+    }
+
+    private void drawTree(Tree<? extends DrawableTreeNode<?>> tree,
+	Group canvas,
 	boolean isRadialLayout) {
 	int scale = 80;
 
@@ -76,7 +123,7 @@ public class GraphDrawingAlgorithmsController {
 	drawNodes(tree, canvas, scale);
     }
 
-    private void drawCircles(BinaryTree<SimpleBinaryTreeNode> tree,
+    private void drawCircles(Tree<?> tree,
 	Group canvas, int scale) {
 	for (int i = 1; i <= tree.getHeight(); i++) {
 	    Circle circle = new Circle(i * scale);
@@ -90,7 +137,8 @@ public class GraphDrawingAlgorithmsController {
 	}
     }
 
-    private void drawGrid(BinaryTree<SimpleBinaryTreeNode> tree, Group canvas,
+    private void drawGrid(Tree<? extends DrawableTreeNode<?>> tree,
+	Group canvas,
 	int scale) {
 
 	double minX = 0;
@@ -134,7 +182,8 @@ public class GraphDrawingAlgorithmsController {
 	}
     }
 
-    private void drawNodes(BinaryTree<SimpleBinaryTreeNode> tree, Group canvas,
+    private void drawNodes(Tree<? extends DrawableTreeNode<?>> tree,
+	Group canvas,
 	int scale) {
 	for (DrawableTreeNode<?> node : tree.createPreOrderIterable()) {
 	    Color nodeColor = node.isRootNode() ? Color.RED : Color.BLUE;
@@ -163,7 +212,8 @@ public class GraphDrawingAlgorithmsController {
 	}
     }
 
-    private void drawEdges(BinaryTree<SimpleBinaryTreeNode> tree, Group canvas,
+    private void drawEdges(Tree<? extends DrawableTreeNode<?>> tree,
+	Group canvas,
 	int scale) {
 	for (DrawableTreeNode<?> node : tree.createPreOrderIterable()) {
 	    if (node.isRootNode()) {

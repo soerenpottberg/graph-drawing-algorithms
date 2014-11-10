@@ -7,12 +7,25 @@
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.layout.FlowPane?>
-	
-<BorderPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.pottberg.gda.gui.controller.GraphDrawingAlgorithmsController">
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.Tab?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml/1"
+	fx:controller="org.pottberg.gda.gui.controller.GraphDrawingAlgorithmsController">
 	<center>
-	<ScrollPane fitToWidth="true">
-	<FlowPane styleClass="flow-pane" fx:id="canvasList">
-	</FlowPane>
-	</ScrollPane>
+		<TabPane>
+			<Tab text="Binary Trees">
+				<ScrollPane fitToWidth="true">
+					<FlowPane styleClass="flow-pane" fx:id="binaryTreesCanvasList">
+					</FlowPane>
+				</ScrollPane>
+			</Tab>
+			<Tab text="Abitrary Trees">
+				<ScrollPane fitToWidth="true">
+					<FlowPane styleClass="flow-pane" fx:id="abitraryTreesCanvasList">
+					</FlowPane>
+				</ScrollPane>
+			</Tab>
+		</TabPane>
 	</center>
 </BorderPane>
