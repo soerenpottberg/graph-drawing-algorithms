@@ -7,6 +7,7 @@ public class SimpleRadialTreeAttributes implements RadialTreeAttributes {
     private int count;
     private double startAngle;
     private double angle;
+    private double actualAngle;
     
     @Override
     public void setLayer(int layer) {
@@ -19,8 +20,8 @@ public class SimpleRadialTreeAttributes implements RadialTreeAttributes {
     }
 
     @Override
-    public double getMiddleAngle() {
-	return startAngle + angle / 2d;
+    public double getActualAngle() {
+	return actualAngle;
     }
 
     @Override
@@ -52,6 +53,11 @@ public class SimpleRadialTreeAttributes implements RadialTreeAttributes {
     @Override
     public double getEndAngle() {
 	return startAngle + angle;
+    }
+
+    @Override
+    public void setActualAngle(double angle) {
+	actualAngle = angle;	
     }
     
 }

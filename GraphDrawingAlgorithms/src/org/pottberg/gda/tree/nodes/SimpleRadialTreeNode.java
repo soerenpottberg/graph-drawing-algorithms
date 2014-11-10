@@ -22,8 +22,13 @@ public class SimpleRadialTreeNode<T extends DrawableTreeNode<T> & AttributedNode
     }
 
     @Override
-    public double getMiddleAngle() {
-	return getAttributes().getMiddleAngle();
+    public double getActualAngle() {
+	return getAttributes().getActualAngle();
+    }
+
+    @Override
+    public void setActualAngle(double angle) {
+        getAttributes().setActualAngle(angle);
     }
 
     @Override

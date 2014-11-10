@@ -27,7 +27,7 @@ public class RadialTreeAlgorithm<T extends DrawableTreeNode<T> & AttributedNode>
 	}
 	for (T node : tree.createPreOrderIterable()) {
 	    RadialTreeNode<?> attributedNode = wrapNode(node);
-	    calculateAdjustedAngle(attributedNode);
+	    calculateActualAngle(attributedNode);
 	    calculateChildNodeAngleRanges(attributedNode);
 	    calculateCoordinates(attributedNode);
 	}
@@ -75,25 +75,28 @@ public class RadialTreeAlgorithm<T extends DrawableTreeNode<T> & AttributedNode>
 	}
     }
 
-    private void calculateAdjustedAngle(RadialTreeNode<?> node) {
+    private void calculateActualAngle(RadialTreeNode<?> node) {
 	if (node.isRootNode()) {
 	    return;
 	}
 	RadialTreeNode<?> parentNode = node.getParentNode();
 	if (parentNode.isRootNode()) {
+	    double startAngle = node.getStartAngle();
+	    double angle = node.getAngle();
+	    node.setActualAngle(startAngle + angle / 2d);
 	    return;
 	}
 	double delta = Math.acos(parentNode.getLevel()
 	    / (double) (node.getLevel()));
-	double parentAngle = parentNode.getMiddleAngle();
+	double parentAngle = parentNode.getActualAngle();
 	double startAngle = Math.max(node.getStartAngle(), parentAngle - delta);
 	double endAngle = Math.min(node.getEndAngle(), parentAngle + delta);
 	double angle = endAngle - startAngle;
-	node.setAngleRange(startAngle, angle);
+	node.setActualAngle(startAngle + angle / 2d);
     }
 
     private void calculateCoordinates(RadialTreeNode<?> node) {
-	double angle = node.getMiddleAngle();
+	double angle = node.getActualAngle();
 	node.setX(node.getLevel() * Math.cos(angle));
 	node.setY(node.getLevel() * Math.sin(angle));
     }

@@ -18,7 +18,9 @@ public interface RadialTreeAttributes {
     void setAngleRange(double startAngle, double angle);
 
     int getLevel();
+    
+    void setActualAngle(double angle);
 
-    double getMiddleAngle();
+    double getActualAngle();
 
 }
