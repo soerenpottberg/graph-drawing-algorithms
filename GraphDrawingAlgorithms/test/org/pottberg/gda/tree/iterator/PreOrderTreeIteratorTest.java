@@ -43,8 +43,8 @@ public class PreOrderTreeIteratorTest extends TreeIteratorTest {
     }
 
     @Test
-    public void testLeftOnly() {
-	Tree<SimpleTreeNode> tree = createTreeWithLeftChild();
+    public void testOneChildOnly() {
+	Tree<SimpleTreeNode> tree = createTreeWithOneChild();
 	Iterator<SimpleTreeNode> iterator = getIterator(tree);
 	assertEquals(new Long(0), getNextValue(iterator));
 	assertEquals(new Long(1), getNextValue(iterator));
@@ -52,11 +52,13 @@ public class PreOrderTreeIteratorTest extends TreeIteratorTest {
     }
 
     @Test
-    public void testRightOnly() {
-	Tree<SimpleTreeNode> tree = createTreeWithRightChild();
+    public void testThreeChildNodes() {
+	Tree<SimpleTreeNode> tree = createTreeWithThreeChildNodes();
 	Iterator<SimpleTreeNode> iterator = getIterator(tree);
 	assertEquals(new Long(0), getNextValue(iterator));
+	assertEquals(new Long(1), getNextValue(iterator));
 	assertEquals(new Long(2), getNextValue(iterator));
+	assertEquals(new Long(3), getNextValue(iterator));
    	assertFalse(iterator.hasNext());
     }
 

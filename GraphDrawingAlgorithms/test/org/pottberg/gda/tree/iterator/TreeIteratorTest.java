@@ -18,13 +18,13 @@ public abstract class TreeIteratorTest {
 	Iterator<SimpleTreeNode> iterator = getIterator(tree);
 	assertFalse(iterator.hasNext());
     }
-    
+
     protected void runTestOneNodeTree() {
-   	Tree<SimpleTreeNode> tree = createOneNodeTree();
-   	Iterator<SimpleTreeNode> iterator = getIterator(tree);
+	Tree<SimpleTreeNode> tree = createOneNodeTree();
+	Iterator<SimpleTreeNode> iterator = getIterator(tree);
 	assertEquals(new Long(0), getNextValue(iterator));
-   	assertFalse(iterator.hasNext());
-       }
+	assertFalse(iterator.hasNext());
+    }
 
     protected void runTestHasNext() {
 	Tree<SimpleTreeNode> tree = createSimpleTree();
@@ -66,12 +66,15 @@ public abstract class TreeIteratorTest {
 	    .addChild(2l));
     }
 
-    protected Tree<SimpleTreeNode> createTreeWithLeftChild() {
+    protected Tree<SimpleTreeNode> createTreeWithOneChild() {
 	return createTree(createNode(0l).addChild(1l));
     }
 
-    protected Tree<SimpleTreeNode> createTreeWithRightChild() {
-	return createTree(createNode(0l).addChild(2l));
+    protected Tree<SimpleTreeNode> createTreeWithThreeChildNodes() {
+	return createTree(createNode(0l)
+	    .addChild(1l)
+	    .addChild(2l)
+	    .addChild(3l));
     }
 
     protected Tree<SimpleTreeNode> createNestedTree() {
