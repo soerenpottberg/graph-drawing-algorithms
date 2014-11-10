@@ -26,6 +26,7 @@ import org.pottberg.gda.tree.algorithms.HVBinaryTreeAlgorithm;
 import org.pottberg.gda.tree.algorithms.HVBinaryTreeAlgorithm.Combination;
 import org.pottberg.gda.tree.algorithms.LayeredBinaryTreeAlgorithm;
 import org.pottberg.gda.tree.algorithms.RadialTreeAlgorithm;
+import org.pottberg.gda.tree.algorithms.SimpleTreeAlgorithm;
 import org.pottberg.gda.tree.algorithms.TreeAlgorithm;
 import org.pottberg.gda.tree.nodes.DrawableTreeNode;
 import org.pottberg.gda.tree.nodes.SimpleBinaryTreeNode;
@@ -65,6 +66,7 @@ public class GraphDrawingAlgorithmsController {
 	algorithms.add(new RadialTreeAlgorithm<SimpleBinaryTreeNode>(tree));
 	algorithms.add(new LayeredBinaryTreeAlgorithm<SimpleBinaryTreeNode>(
 	    tree));
+	algorithms.add(new SimpleTreeAlgorithm(tree));
 
 	for (BinaryTreeAlgorithm algorithm : algorithms) {
 	    algorithm.execute();
@@ -98,6 +100,7 @@ public class GraphDrawingAlgorithmsController {
 	    );
 	List<TreeAlgorithm> algorithms = new ArrayList<>();
 	algorithms.add(new RadialTreeAlgorithm<SimpleTreeNode>(tree));
+	algorithms.add(new SimpleTreeAlgorithm(tree));
 
 	for (BinaryTreeAlgorithm algorithm : algorithms) {
 	    algorithm.execute();
