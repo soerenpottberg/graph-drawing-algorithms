@@ -13,7 +13,7 @@ import org.pottberg.gda.tree.nodes.SimpleLayeredBinaryTreeNode;
 public class LayeredBinaryTreeAlgorithm<T extends BinaryTreeNode<T> & DrawableTreeNode<T> & AttributedNode>
     implements BinaryTreeAlgorithm {
 
-    private static final int MINIMAL_DISTANCE = 2;
+    private static final int MINIMAL_DISTANCE = 1;
     private BinaryTree<T> tree;
 
     public LayeredBinaryTreeAlgorithm(BinaryTree<T> tree) {

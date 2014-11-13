@@ -77,6 +77,12 @@ public abstract class SimpleTreeNodeWrapper<T extends DrawableTreeNode<T> & Attr
     }
     
     @Override
+    public Iterable<R> createBackwardsChildNodeIterable() {
+	Iterable<T> iterable = wrappedNode.createBackwardsChildNodeIterable();
+	return new WrapperIterable<>(iterable, this::wrapNode);
+    }
+    
+    @Override
     public R getChildNode(int index) {
 	return wrapNode(wrappedNode.getChildNode(index));
     }

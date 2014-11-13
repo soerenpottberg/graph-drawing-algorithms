@@ -4,31 +4,31 @@ import java.util.List;
 
 import org.pottberg.gda.node.AttributedNode;
 import org.pottberg.gda.tree.nodes.DrawableTreeNode;
-import org.pottberg.gda.tree.nodes.LayeredBinaryTreeNode;
+import org.pottberg.gda.tree.nodes.LayeredTreeNode;
 import org.pottberg.gda.tree.nodes.TreeNode;
 
-public class SimpleLayeredBinaryTreeAttributes<T extends TreeNode<T> & DrawableTreeNode<T> & AttributedNode> implements LayeredBinaryTreeAttributes {
-    private List<LayeredBinaryTreeNode<?>> leftBoundary;
-    private List<LayeredBinaryTreeNode<?>> rightBoundary;
+public class SimpleLayeredTreeAttributes<T extends TreeNode<T> & DrawableTreeNode<T> & AttributedNode> implements LayeredTreeAttributes {
+    private List<LayeredTreeNode<?>> leftBoundary;
+    private List<LayeredTreeNode<?>> rightBoundary;
     private int xOffset;
     
     @Override
-    public void setLeftBoundary(List<LayeredBinaryTreeNode<?>> boundary) {
+    public void setLeftBoundary(List<LayeredTreeNode<?>> boundary) {
 	leftBoundary = boundary;
     }
     
     @Override
-    public void setRightBoundary(List<LayeredBinaryTreeNode<?>> boundary) {
+    public void setRightBoundary(List<LayeredTreeNode<?>> boundary) {
 	rightBoundary = boundary;
     }
     
     @Override
-    public List<LayeredBinaryTreeNode<?>> getLeftBoundary() {
+    public List<LayeredTreeNode<?>> getLeftBoundary() {
 	return leftBoundary;
     }
     
     @Override
-    public List<LayeredBinaryTreeNode<?>> getRightBoundary() {
+    public List<LayeredTreeNode<?>> getRightBoundary() {
 	return rightBoundary;
     }
     

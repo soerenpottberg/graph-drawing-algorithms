@@ -20,4 +20,9 @@ public class UserDefinedTestNode extends AttributedBinaryTreeNodeBase<UserDefine
 	return new ChildNodeBinaryTreeIterable<UserDefinedTestNode>(this);
     }
 
+    @Override
+    public Iterable<UserDefinedTestNode> createBackwardsChildNodeIterable() {
+	return new ChildNodeBinaryTreeIterable<UserDefinedTestNode>(this, false);
+    }
+
 }

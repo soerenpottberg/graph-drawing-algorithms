@@ -18,4 +18,9 @@ public class SimpleTreeNode extends AttributedTreeNodeBase<SimpleTreeNode>{
 	return new ChildNodeTreeIterable<SimpleTreeNode>(this);
     }
 
+    @Override
+    public Iterable<SimpleTreeNode> createBackwardsChildNodeIterable() {
+	return new ChildNodeTreeIterable<SimpleTreeNode>(this, true);
+    }
+
 }

@@ -17,5 +17,11 @@ public final class SimpleBinaryTreeNode extends AttributedBinaryTreeNodeBase<Sim
     public Iterable<SimpleBinaryTreeNode> createChildNodeIterable() {
 	return new ChildNodeBinaryTreeIterable<SimpleBinaryTreeNode>(this);
     }
+    
+    @Override
+    public Iterable<SimpleBinaryTreeNode> createBackwardsChildNodeIterable() {
+        // TODO Auto-generated method stub
+        return new ChildNodeBinaryTreeIterable<SimpleBinaryTreeNode>(this, true);
+    }
 
 }
