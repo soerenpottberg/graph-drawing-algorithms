@@ -3,9 +3,7 @@ package org.pottberg.gda.tree.nodes;
 import java.util.List;
 
 import org.pottberg.gda.node.AttributedNode;
-import org.pottberg.gda.tree.attributes.LayeredBinaryTreeAttributes;
 import org.pottberg.gda.tree.attributes.LayeredTreeAttributes;
-import org.pottberg.gda.tree.attributes.SimpleLayeredBinaryTreeAttributes;
 import org.pottberg.gda.tree.attributes.SimpleLayeredTreeAttributes;
 
 public class SimpleLayeredTreeNode<T extends TreeNode<T> & DrawableTreeNode<T> & AttributedNode>
