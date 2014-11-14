@@ -106,6 +106,11 @@ public abstract class SimpleTreeNodeWrapper<T extends DrawableTreeNode<T> & Attr
         }
         return attributes;
     }
+    
+    @Override
+    public String toString() {
+        return wrappedNode.toString();
+    }
 
     protected abstract R wrapNode(T node);
     
