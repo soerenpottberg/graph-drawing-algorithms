@@ -39,43 +39,43 @@ public class HVBinaryTreeAlgorithm<T extends BinaryTreeNode<T> & DrawableTreeNod
 	}
     }
 
-    private void calculateOffsets(HVBinaryTreeNode<?> attributedNode) {
+    private void calculateOffsets(HVBinaryTreeNode<?> node) {
 
 	int offset = 1;
-	if (attributedNode.hasLeftNode()) {
-	    attributedNode.getLeftNode()
+	if (node.hasLeftNode()) {
+	    node.getLeftNode()
 		.setXOffset(0);
-	    attributedNode.getLeftNode()
+	    node.getLeftNode()
 		.setYOffset(offset);
 	}
 
-	if (attributedNode.hasRightNode()) {
-	    attributedNode.getRightNode()
+	if (node.hasRightNode()) {
+	    node.getRightNode()
 		.setXOffset(offset);
-	    attributedNode.getRightNode()
+	    node.getRightNode()
 		.setYOffset(0);
 	}
 
-	if (attributedNode.hasLeftNode() && attributedNode.hasRightNode()) {
+	if (node.hasLeftNode() && node.hasRightNode()) {
 	    if (combination == Combination.HORIZONTAL) {
-		offset += attributedNode.getLeftNode()
+		offset += node.getLeftNode()
 		    .getBoundingBoxWidth();
-		attributedNode.getRightNode()
+		node.getRightNode()
 		    .setXOffset(offset);
 	    } else {
-		offset += attributedNode.getRightNode()
-		    .getHeight();
-		attributedNode.getLeftNode()
+		offset += node.getRightNode()
+		    .getBoundingBoxHeight();
+		node.getLeftNode()
 		    .setYOffset(offset);
 	    }
 	}
     }
 
-    private void calculateBoundingBox(HVBinaryTreeNode<?> attributedNode) {
+    private void calculateBoundingBox(HVBinaryTreeNode<?> node) {
 	int maxHeight = 0;
 	int maxWidth = 0;
 
-	if (attributedNode.hasLeftNode() && attributedNode.hasRightNode()) {
+	if (node.hasLeftNode() && node.hasRightNode()) {
 	    if (combination == Combination.HORIZONTAL) {
 		maxWidth += 1;
 	    } else {
@@ -84,36 +84,36 @@ public class HVBinaryTreeAlgorithm<T extends BinaryTreeNode<T> & DrawableTreeNod
 	}
 
 	if (combination == Combination.HORIZONTAL) {
-	    if (attributedNode.hasLeftNode()) {
-		maxHeight = Math.max(maxHeight, attributedNode.getLeftNode()
+	    if (node.hasLeftNode()) {
+		maxHeight = Math.max(maxHeight, node.getLeftNode()
 		    .getHeight() + 1);
-		maxWidth += attributedNode.getLeftNode()
+		maxWidth += node.getLeftNode()
 		    .getBoundingBoxWidth();
 	    }
-	    if (attributedNode.hasRightNode()) {
-		maxHeight = Math.max(maxHeight, attributedNode.getRightNode()
+	    if (node.hasRightNode()) {
+		maxHeight = Math.max(maxHeight, node.getRightNode()
 		    .getHeight());
-		maxWidth += attributedNode.getRightNode()
+		maxWidth += node.getRightNode()
 		    .getBoundingBoxWidth();
 	    }
 
 	} else {
-	    if (attributedNode.hasLeftNode()) {
-		maxHeight = attributedNode.getLeftNode()
+	    if (node.hasLeftNode()) {
+		maxHeight += node.getLeftNode()
 		    .getHeight();
-		maxWidth = Math.max(maxWidth, attributedNode.getLeftNode()
+		maxWidth = Math.max(maxWidth, node.getLeftNode()
 		    .getBoundingBoxWidth());
 	    }
-	    if (attributedNode.hasRightNode()) {
-		maxHeight += attributedNode.getRightNode()
+	    if (node.hasRightNode()) {
+		maxHeight += node.getRightNode()
 		    .getHeight();
-		maxWidth = Math.max(maxWidth, attributedNode.getRightNode()
+		maxWidth = Math.max(maxWidth, node.getRightNode()
 		    .getBoundingBoxWidth() + 1);
 	    }
 
 	}
-	attributedNode.setBoundingBoxHeight(maxHeight);
-	attributedNode.setBoundingBoxWidth(maxWidth);
+	node.setBoundingBoxHeight(maxHeight);
+	node.setBoundingBoxWidth(maxWidth);
     }
 
     private void calculateCoordinates(HVBinaryTreeNode<?> attributedNode) {
